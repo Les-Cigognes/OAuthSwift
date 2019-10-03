@@ -289,8 +289,8 @@ open class OAuthSwiftHTTPRequest: NSObject, OAuthSwiftRequestHandle {
                     // snip
                     } else {
                         request.setValue("application/x-www-form-urlencoded; charset=\(charset)", forHTTPHeaderField: kHTTPHeaderContentType)
-                        let queryString = finalParameters.urlEncodedQuery
-                        request.httpBody = queryString.data(using: dataEncoding, allowLossyConversion: true)
+                        var queryString = finalParameters.urlQuery
+                        request.httpBody = queryString.data(using: dataEncoding)
                     }
                 }
             }

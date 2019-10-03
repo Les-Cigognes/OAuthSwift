@@ -23,6 +23,17 @@ extension Dictionary {
 
         return joinedDictionary
     }
+    
+    var urlQuery: String {
+        var parts = [String]()
+
+        for (key, value) in self {
+            let query = "\(key)=\(value)"
+            parts.append(query)
+        }
+
+        return parts.joined(separator: "&")
+    }
 
     var urlEncodedQuery: String {
         var parts = [String]()

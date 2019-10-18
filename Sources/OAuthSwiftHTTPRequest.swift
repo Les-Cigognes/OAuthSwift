@@ -16,6 +16,8 @@ import UIKit
 let kHTTPHeaderContentType = "Content-Type"
 
 open class OAuthSwiftHTTPRequest: NSObject, OAuthSwiftRequestHandle {
+    
+    public static var defaultTaskPriority = URLSessionTask.defaultPriority
 
     // Using NSLock for Linux compatible locking 
     let requestLock = NSLock()
@@ -99,6 +101,7 @@ open class OAuthSwiftHTTPRequest: NSObject, OAuthSwiftRequestHandle {
                 self.task = self.session.dataTask(with: usedRequest)
             }
 
+            self.task?.priority = OAuthSwiftHTTPRequest.defaultTaskPriority
             self.task?.resume()
             self.session.finishTasksAndInvalidate()
 
